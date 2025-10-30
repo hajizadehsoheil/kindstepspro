@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
+    />
+    <title>Kind Steps ABA</title>
+
+    <!-- Favicon (tab icon) -->
+    <link rel="icon" type="image/png" href="images/logo.png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="images/logo.png" />
+
+    <!-- Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="templatemo-personal-style.css" />
+  </head>
+
+  <body>
+    <!-- ===========================
+         HEADER / NAV
+    ============================ -->
+    <header class="nav-wrapper">
+      <nav class="navbar" id="navbar">
+        <!-- left cluster -->
+        <div class="nav-left">
+          <a href="#home" class="brand">
+            <img
+              src="images/logo.png"
+              alt="Kind Steps ABA Logo"
+              class="brand-logo"
+            />
+            <div class="brand-info">
+              <div class="brand-text">Kind Steps ABA</div>
+              <div class="brand-tagline">Compassion • Evidence • Progress</div>
+            </div>
+          </a>
+
+          <!-- desktop links -->
+          <ul class="nav-links">
+            <li>
+              <a href="#home"><span class="label">Home</span></a>
+            </li>
+            <li>
+              <a href="#about"><span class="label">About</span></a>
+            </li>
+            <li>
+              <a href="#services"><span class="label">Services</span></a>
+            </li>
+            <li>
+              <a href="#contact"><span class="label">Contact</span></a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- right cluster (desktop CTA) -->
+        <div class="nav-cta">
+          <a href="#contact" class="cta-pill">
+            <span class="dot"></span>
+            <span>Free Consultation</span>
+          </a>
+        </div>
+
+        <!-- mobile side (burger button ONLY for mobile screens) -->
+        <div class="nav-mobile-side">
+          <button
+            class="mobile-toggle bubble-menu-btn"
+            id="mobileMenuToggle"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <span class="bubble-line"></span>
+            <span class="bubble-line"></span>
+            <span class="bubble-line"></span>
+          </button>
+        </div>
+
+        <!-- scroll progress bar -->
+        <div class="scroll-progress" id="scrollProgress"></div>
+      </nav>
+
+      <!-- overlay background behind drawer -->
+      <div class="overlay-blur" id="overlayBlur"></div>
+
+      <!-- ===========================
+           MOBILE OVERLAY / DRAWER
+      ============================ -->
+      <aside
+        class="mobile-drawer"
+        id="mobileDrawer"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <div class="mobile-drawer-header">
+          <div class="mobile-profile-block">
+            <div class="mobile-profile-left">
+              <img
+                src="images/logo.png"
+                alt="Kind Steps ABA Logo"
+                class="mobile-brand-logo"
+              />
+            </div>
+            <div class="mobile-profile-right">
+              <div class="mobile-profile-name">
+                Soheil Haji Zadeh
+                <span class="cert-chip"
+                  ><i class="fa-solid fa-shield-heart"></i> Behaviour
+                  Analyst</span
+                >
+              </div>
+              <div class="mobile-profile-sub">ABA Specialist • GTA</div>
+            </div>
+          </div>
+
+          <button
+            class="mobile-close-btn"
+            id="mobileCloseBtn"
+            aria-label="Close menu"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+
+        <ul class="mobile-nav-links">
+          <li>
+            <a href="#home" data-mobile-link>
+              <span class="label">Home</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#about" data-mobile-link>
+              <span class="label">About</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#services" data-mobile-link>
+              <span class="label">Services</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </li>
+          <li>
+            <a href="#contact" data-mobile-link>
+              <span class="label">Contact</span>
+              <i class="fa-solid fa-chevron-right"></i>
+            </a>
+          </li>
+        </ul>
+
+        <div class="mobile-contact-card">
+          <div class="contact-row">
+            <div class="contact-icon">📍</div>
+            <div>
+              <b>Serving</b><br />
+              GTA, Canada
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon">📧</div>
+            <div>
+              <b>Email</b><br />
+              info@kindsteps.ca
+            </div>
+          </div>
+
+          <div class="contact-row">
+            <div class="contact-icon">📱</div>
+            <div>
+              <b>Phone</b><br />
+              (647) 673-4401
+            </div>
+          </div>
+
+          <a href="#contact" class="drawer-big-cta" data-mobile-link>
+            <i class="fa-solid fa-calendar-check"></i>
+            <span>Request a Free Consultation</span>
+          </a>
+        </div>
+      </aside>
+    </header>
+
+    <!-- ===========================
+         HERO
+    ============================ -->
+    <section id="home" class="hero">
+      <!-- floating blobs for parallax -->
+      <div class="orb orb-a" data-orb></div>
+      <div class="orb orb-b" data-orb></div>
+      <div class="orb orb-c" data-orb></div>
+
+      <div class="hero-inner">
+        <div class="hero-eyebrow">Compassion • Evidence • Progress</div>
+
+        <h1 class="hero-title">
+          Supporting Neurodiverse Children, Teens &amp; Young Adults Across GTA
+        </h1>
+
+        <p class="hero-desc">
+          Individualized ABA support for communication, behaviour, independence
+          and confidence — built around your child, your family, and your goals.
+        </p>
+
+        <div class="hero-cta-row">
+          <a href="#contact" class="hero-cta hero-cta-primary" data-mobile-link>
+            Book a Free Consultation
+          </a>
+          <a href="#faq" class="hero-cta hero-cta-ghost"> What is ABA? </a>
+        </div>
+
+        <!-- quick fact badges -->
+        <div class="hero-facts">
+          <div class="fact-chip">
+            <span class="fact-icon">🧩</span>
+            Autism • ADHD • Developmental Support
+          </div>
+          <div class="fact-chip">
+            <span class="fact-icon">🏠</span>
+            Home • School • Community
+          </div>
+          <div class="fact-chip">
+            <span class="fact-icon">📍</span>
+            GTA, Canada
+          </div>
+        </div>
+      </div>
+
+      <div
+        class="scroll-indicator"
+        id="scrollIndicator"
+        aria-label="Scroll to About"
+      ></div>
+    </section>
+
+    <!-- ===========================
+         ABOUT
+    ============================ -->
+    <section id="about" class="about">
+      <div class="container">
+        <h2 class="section-title fade-in">About Me</h2>
+
+        <div class="about-layout">
+          <!-- profile card -->
+          <aside class="about-profile-card slide-in-left">
+            <div class="profile-card-inner">
+              <div class="profile-avatar">
+                <!-- avatar placeholder -->
+                <div class="avatar-fake">
+                  <i class="fa-solid fa-user"></i>
+                </div>
+              </div>
+
+              <div class="profile-info-block">
+                <div class="profile-name-row">
+                  <div class="profile-name">Soheil Haji Zadeh</div>
+                  <div class="profile-chip">
+                    <i class="fa-solid fa-shield-heart"></i>
+                    Behaviour Analyst
+                  </div>
+                </div>
+
+                <div class="profile-detail">
+                  Supporting neurodiverse individuals and families through
+                  evidence-based, compassionate ABA.
+                </div>
+
+                <div class="profile-tags">
+                  <span class="pro-tag">Autism</span>
+                  <span class="pro-tag">ADHD</span>
+                  <span class="pro-tag">Teens &amp; Young Adults</span>
+                  <span class="pro-tag">Parent Coaching</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-stats-row">
+              <div class="stat-box">
+                <div class="stat-num">7+</div>
+                <div class="stat-label">Years Experience</div>
+              </div>
+              <div class="stat-box">
+                <div class="stat-num">Family-Focused</div>
+                <div class="stat-label">Collaborative Care</div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- main text -->
+          <div class="about-text-col slide-in-right">
+            <section class="about-block">
+              <h3>Hello, and welcome!</h3>
+              <p>
+                My name is Soheil Haji Zadeh, and I'm a Behaviour Analyst
+                dedicated to supporting individuals of all ages—children,
+                teenagers, and young adults—through practical, compassionate,
+                and evidence-based services.
+              </p>
+              <p>
+                Throughout my career, I've worked with neurodiverse individuals
+                across home, school, and clinical settings. My practice is
+                rooted in Applied Behaviour Analysis (ABA), and I tailor every
+                plan to the individual's strengths, needs, and goals.
+              </p>
+            </section>
+
+            <section class="about-block">
+              <h3>How I work</h3>
+              <p>
+                Whether it's helping a young child build early communication,
+                supporting a teen with social development, or guiding a young
+                adult toward daily independence, the goal is always the same:
+                give you strategies that actually work in real life.
+              </p>
+
+              <ul class="about-list">
+                <li>
+                  <span class="check-icon">✔</span>
+                  Collaborative with families, schools, and caregivers
+                </li>
+                <li>
+                  <span class="check-icon">✔</span>
+                  Kind, respectful, strengths-based support
+                </li>
+                <li>
+                  <span class="check-icon">✔</span>
+                  Clear, realistic, measurable goals
+                </li>
+                <li>
+                  <span class="check-icon">✔</span>
+                  Focus on long-term independence and confidence
+                </li>
+              </ul>
+
+              <p>
+                If you're seeking support that is thoughtful, individualized,
+                and rooted in both compassion and evidence, I would be honoured
+                to work with you.
+              </p>
+            </section>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===========================
+         SERVICES
+    ============================ -->
+    <section id="services" class="services">
+      <div class="container">
+        <h2 class="section-title fade-in">Our Services</h2>
+
+        <!-- age segment selector -->
+        <div class="service-segments">
+          <button class="segment-btn active" data-segment="early">
+            Early Years (2–6)
+          </button>
+          <button class="segment-btn" data-segment="school">
+            School Age (7–12)
+          </button>
+          <button class="segment-btn" data-segment="teens">
+            Teens &amp; Young Adults (13+)
+          </button>
+        </div>
+
+        <div class="services-grid portfolio-grid" id="servicesGrid">
+          <!-- Individual ABA Therapy -->
+          <div
+            class="service-card portfolio-item"
+            data-groups="early school teens"
+          >
+            <div class="service-icon-badge">🧩</div>
+            <h4>Individual ABA Therapy</h4>
+            <p>
+              One-on-one support designed around communication, daily living,
+              social interaction, self-regulation, and independence.
+            </p>
+            <div class="focus-tags">
+              <span>Communication</span>
+              <span>Self-Regulation</span>
+              <span>Independence</span>
+            </div>
+          </div>
+
+          <!-- Parent Coaching -->
+          <div
+            class="service-card portfolio-item"
+            data-groups="early school teens"
+          >
+            <div class="service-icon-badge">👨‍👩‍👧</div>
+            <h4>Parent Coaching &amp; Training</h4>
+            <p>
+              Practical strategies to support learning, reduce stress, and
+              navigate day-to-day challenges at home.
+            </p>
+            <div class="focus-tags">
+              <span>Behaviour Support</span>
+              <span>Home Routines</span>
+              <span>Consistency</span>
+            </div>
+          </div>
+
+          <!-- School Collaboration -->
+          <div class="service-card portfolio-item" data-groups="school teens">
+            <div class="service-icon-badge">🏫</div>
+            <h4>School Collaboration &amp; Consultation</h4>
+            <p>
+              Working with school teams to create inclusive supports, functional
+              behaviour plans, and meaningful accommodations.
+            </p>
+            <div class="focus-tags">
+              <span>Behaviour Plans</span>
+              <span>Classroom Support</span>
+              <span>Inclusion</span>
+            </div>
+          </div>
+
+          <!-- Social Skills -->
+          <div class="service-card portfolio-item" data-groups="school teens">
+            <div class="service-icon-badge">🧠</div>
+            <h4>Social Skills Training</h4>
+            <p>
+              Individual or small-group sessions targeting conversation,
+              friendship skills, flexibility, and self-advocacy.
+            </p>
+            <div class="focus-tags">
+              <span>Conversation</span>
+              <span>Peer Skills</span>
+              <span>Self-Advocacy</span>
+            </div>
+          </div>
+
+          <!-- Daily Living -->
+          <div
+            class="service-card portfolio-item"
+            data-groups="early school teens"
+          >
+            <div class="service-icon-badge">🧼</div>
+            <h4>Daily Living Skills Training</h4>
+            <p>
+              Toileting, dressing, hygiene, cooking, organization, and routines
+              that build real independence.
+            </p>
+            <div class="focus-tags">
+              <span>Self-Care</span>
+              <span>Routines</span>
+              <span>Independence</span>
+            </div>
+          </div>
+
+          <!-- Behaviour Reduction -->
+          <div
+            class="service-card portfolio-item"
+            data-groups="early school teens"
+          >
+            <div class="service-icon-badge">🔄</div>
+            <h4>Behaviour Reduction &amp; Replacement</h4>
+            <p>
+              Functional assessment and personalized plans to reduce difficult
+              behaviours through positive, realistic alternatives.
+            </p>
+            <div class="focus-tags">
+              <span>Safety</span>
+              <span>Communication</span>
+              <span>Quality of Life</span>
+            </div>
+          </div>
+
+          <!-- Communication -->
+          <div class="service-card portfolio-item" data-groups="early school">
+            <div class="service-icon-badge">🗣️</div>
+            <h4>Communication Skills Development</h4>
+            <p>
+              Support for both verbal and non-verbal learners, including Natural
+              Environment Teaching (NET), Verbal Behaviour (VB), and PECS.
+            </p>
+            <div class="focus-tags">
+              <span>Requesting</span>
+              <span>Expressing Needs</span>
+              <span>Social Language</span>
+            </div>
+          </div>
+
+          <!-- Assessment -->
+          <div
+            class="service-card portfolio-item"
+            data-groups="early school teens"
+          >
+            <div class="service-icon-badge">🎯</div>
+            <h4>Assessment &amp; Goal Planning</h4>
+            <p>
+              Comprehensive assessment (ABLLS-R, VB-MAPP, PEAK, etc.) to
+              understand current skill levels and build clear next steps.
+            </p>
+            <div class="focus-tags">
+              <span>Skill Mapping</span>
+              <span>Goal Setting</span>
+              <span>Planning</span>
+            </div>
+          </div>
+
+          <!-- Data / Monitoring -->
+          <div class="service-card portfolio-item" data-groups="school teens">
+            <div class="service-icon-badge">🧾</div>
+            <h4>Data Collection &amp; Progress Monitoring</h4>
+            <p>
+              Ongoing data tracking and clear reports so you can see progress
+              and understand what's working.
+            </p>
+            <div class="focus-tags">
+              <span>Transparency</span>
+              <span>Results</span>
+              <span>Adjustments</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- callout -->
+        <div class="service-callout-card fade-in">
+          <div class="callout-content">
+            <div class="callout-text">
+              <div class="callout-headline">
+                Not sure which service fits best?
+              </div>
+              <div class="callout-desc">
+                Tell me about your child and I’ll help you choose a starting
+                point — no pressure, no commitment.
+              </div>
+            </div>
+            <a href="#contact" class="callout-btn" data-mobile-link>
+              Get a Personalized Plan
+              <i class="fa-solid fa-arrow-right-long"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===========================
+         FAQ / ABA EXPLAIN (anchor for "What is ABA?")
+    ============================ -->
+    <section id="faq" class="faq-block">
+      <div class="container">
+        <div class="faq-card fade-in">
+          <div class="faq-card-head">
+            <div class="faq-eyebrow">What is ABA?</div>
+            <h2 class="faq-title">
+              Applied Behaviour Analysis (ABA) is an evidence-based approach to
+              teaching meaningful, real-life skills.
+            </h2>
+          </div>
+          <div class="faq-body">
+            <div class="faq-col">
+              <p>
+                ABA focuses on understanding why behaviours happen, and then
+                building strategies that actually work in the real world —
+                communication, independence, self-regulation, social connection,
+                and more.
+              </p>
+              <p>
+                Good ABA is collaborative, respectful, and person-centered. It
+                should feel supportive, not forceful.
+              </p>
+            </div>
+            <div class="faq-col">
+              <ul class="faq-list">
+                <li>
+                  <span class="dot"></span>
+                  Improves communication and self-advocacy
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  Builds daily living skills and independence
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  Supports emotional &amp; behavioural regulation
+                </li>
+                <li>
+                  <span class="dot"></span>
+                  Helps families feel confident and prepared
+                </li>
+              </ul>
+              <a href="#contact" class="faq-cta">
+                Talk to me about ABA for your child
+                <i class="fa-solid fa-arrow-right-long"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ===========================
+         CONTACT
+    ============================ -->
+    <section id="contact" class="contact">
+      <div class="container contact-inner">
+        <h2 class="section-title fade-in">Let's Work Together</h2>
+
+        <p class="contact-lead fade-in">
+          Free and confidential consultation. No obligation. I’ll listen, ask a
+          few questions, and help you understand next steps.
+        </p>
+
+        <div class="contact-info-bar fade-in">
+          <div class="contact-info-item">
+            <div class="contact-icon">📍</div>
+            <div class="contact-text">
+              <div class="contact-label">Serving</div>
+              <div class="contact-value">GTA, Canada</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">📧</div>
+            <div class="contact-text">
+              <div class="contact-label">Email</div>
+              <div class="contact-value">info@kindsteps.ca</div>
+            </div>
+          </div>
+
+          <div class="contact-info-item">
+            <div class="contact-icon">📱</div>
+            <div class="contact-text">
+              <div class="contact-label">Phone</div>
+              <div class="contact-value">(647) 673-4401</div>
+            </div>
+          </div>
+        </div>
+        <!-- Socials (Contact top) -->
+        <div class="contact-social-row fade-in" aria-label="Social media">
+          <span class="contact-social-label">Find us on</span>
+          <div class="contact-social-icons">
+            <a
+              class="social-icon ig"
+              href="https://www.instagram.com/kindsteps.ca?igsh=MTNyZG9jZmlxaGJsNQ%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              class="social-icon fb"
+              href="https://www.facebook.com/profile.php?id=61582967827010&mibextid=wwXIfr&rdid=DpElFN8Wy2D6fNHR#"
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <!-- WhatsApp click-to-chat -->
+            <a
+              class="social-icon wa"
+              href="https://wa.me/16476734401?text=Hello%20Kind%20Steps%20ABA%2C%20I%27d%20like%20to%20book%20a%20free%20consultation."
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="WhatsApp"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
+        <form class="contact-form fade-in" id="contactForm">
+          <h3 class="form-headline">Free Consultation</h3>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Parent / Caregiver Name</label>
+              <input
+                id="name"
+                name="name"
+                type="text"
+                placeholder="Your full name"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="your.email@example.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="Your phone number"
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="preferred">Preferred Contact Method</label>
+              <select id="preferred" name="preferred" required>
+                <option value="">Select one</option>
+                <option value="Phone Call">Phone Call</option>
+                <option value="Email">Email</option>
+                <option value="Text Message">Text Message</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="service">Service of Interest</label>
+              <select id="service" name="service" required>
+                <option value="">Select a service</option>
+                <option value="Individual ABA Therapy">
+                  Individual ABA Therapy
+                </option>
+                <option value="Parent Coaching & Training">
+                  Parent Coaching &amp; Training
+                </option>
+                <option value="School Collaboration & Consultation">
+                  School Collaboration &amp; Consultation
+                </option>
+                <option value="Social Skills Training">
+                  Social Skills Training
+                </option>
+                <option value="Daily Living Skills Training">
+                  Daily Living Skills Training
+                </option>
+                <option value="Behaviour Reduction & Replacement">
+                  Behaviour Reduction &amp; Replacement
+                </option>
+                <option value="Communication Skills Development">
+                  Communication Skills Development
+                </option>
+                <option value="Assessment & Goal Planning">
+                  Assessment &amp; Goal Planning
+                </option>
+                <option value="Data Collection & Progress Monitoring">
+                  Data Collection &amp; Progress Monitoring
+                </option>
+                <option value="General Consultation">
+                  General Consultation
+                </option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="childAge">Child / Client Age</label>
+              <input
+                id="childAge"
+                name="childAge"
+                type="text"
+                placeholder="e.g. 5 years old"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">How can I help?</label>
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              placeholder="Tell me a little about your goals, challenges, or questions..."
+              required
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Send Message</button>
+
+          <!-- Toast feedback -->
+          <div class="form-toast" id="formToast">
+            <div class="toast-icon">
+              <i class="fa-solid fa-circle-check"></i>
+            </div>
+            <div>
+              <div class="toast-title">Message sent</div>
+              <div class="toast-desc">
+                Thank you — I’ll reach out as soon as possible.
+              </div>
+            </div>
+            <button
+              class="toast-close"
+              id="toastClose"
+              type="button"
+              aria-label="Close"
+            >
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ===========================
+         FOOTER
+    ============================ -->
+    <footer class="footer">
+      <div class="container footer-grid">
+        <!-- Brand/mission -->
+        <div class="footer-col">
+          <div class="footer-brand">
+            <div class="footer-brand-name">Kind Steps ABA</div>
+            <div class="footer-brand-line">
+              Evidence-based, compassionate ABA across GTA.
+            </div>
+          </div>
+          <div class="footer-copy">&copy; 2025. All rights reserved.</div>
+        </div>
+
+        <!-- Quick links -->
+        <div class="footer-col">
+          <div class="footer-head">Site</div>
+          <ul class="footer-links">
+            <li><a href="#home" data-mobile-link>Home</a></li>
+            <li><a href="#about" data-mobile-link>About</a></li>
+            <li><a href="#services" data-mobile-link>Services</a></li>
+            <!-- <li><a href="#faq" data-mobile-link>What is ABA?</a></li> -->
+            <li><a href="#contact" data-mobile-link>Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Contact info -->
+        <div class="footer-col">
+          <div class="footer-head">Contact</div>
+          <ul class="footer-contact">
+            <li>
+              <i class="fa-solid fa-envelope"></i>
+              info@kindsteps.ca
+            </li>
+            <li>
+              <i class="fa-solid fa-phone"></i>
+              (647) 673-4401
+            </li>
+            <li>
+              <i class="fa-solid fa-location-dot"></i>
+              Serving GTA, Canada
+            </li>
+          </ul>
+          <!-- Socials (Footer) -->
+          <div class="social-links">
+            <a
+              class="social-icon ig"
+              href="https://www.instagram.com/kindsteps.ca?igsh=MTNyZG9jZmlxaGJsNQ%3D%3D&utm_source=qr"
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="Instagram"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+
+            <a
+              class="social-icon fb"
+              href="https://www.facebook.com/profile.php?id=61582967827010&mibextid=wwXIfr&rdid=DpElFN8Wy2D6fNHR#"
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="Facebook"
+            >
+              <i class="fa-brands fa-facebook-f"></i>
+            </a>
+            <!-- WhatsApp click-to-chat -->
+            <a
+              class="social-icon wa"
+              href="https://wa.me/16476734401?text=Hello%20Kind%20Steps%20ABA%2C%20I%27d%20like%20to%20book%20a%20free%20consultation."
+              target="_blank"
+              rel="noopener nofollow"
+              aria-label="WhatsApp"
+            >
+              <i class="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+
+          <a
+            href="https://milink.ca"
+            target="_blank"
+            rel="noopener nofollow"
+            class="provider-link"
+          >
+            Provided by milink.ca
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- ===========================
+         SCRIPTS
+    ============================ -->
+    <script src="templatemo-personal-javascripts.js"></script>
+  </body>
+</html>
