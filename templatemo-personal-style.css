@@ -409,7 +409,11 @@ section {
   position: fixed;
   top: 0;
   right: 0;
-  height: 100vh;
+
+  /* ✅ fix: correct viewport height on mobile browsers */
+  height: 100dvh;
+  height: 100vh; /* fallback */
+
   width: min(360px, 85vw);
   background: var(--glass-bg-darker);
   -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -424,15 +428,21 @@ section {
   z-index: 1000;
   display: flex;
   flex-direction: column;
-  padding: 2rem 1.5rem;
-  color: var(--text-light);
 
-  pointer-events: auto; /* <-- فقط اینو اضافه کن */
+  /* ✅ fix: give extra bottom space so last button isn't hidden */
+  padding: 2rem 1.5rem calc(5.5rem + env(safe-area-inset-bottom)) 1.5rem;
+
+  color: var(--text-light);
+  pointer-events: auto;
+
+  /* ✅ fix: drawer should always be scrollable when content is tall */
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 #mobileDrawer.active {
   transform: translateX(0);
-  overflow-y: auto;
+  /* overflow-y: auto;  <-- این دیگه لازم نیست */
 }
 
 .mobile-drawer-header {
