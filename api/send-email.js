@@ -83,6 +83,29 @@ export default async function handler(req, res) {
       html,
     });
 
+    // Instant confirmation email to the parent (best-effort; never fails the request)
+    try {
+      const firstName = String(name).trim().split(/\s+/)[0] || "there";
+      const autoSubject = "Thanks for reaching out to Kind Steps ABA";
+      const autoHtml = `
+      <div style="font-family:system-ui,Segoe UI,Arial,sans-serif;line-height:1.7;max-width:600px">
+        <p>Hi ${firstName},</p>
+        <p>Thanks for reaching out to Kind Steps! We're an OAP-approved provider offering ABA-based support for children and teenagers with autism across the GTA \u2014 including toilet training, communication, life skills, executive functioning, and emotional regulation.</p>
+        <p>Our therapists provide in-home services, and every program is individualized and supervised by Soheil Haji Zadeh, Registered Behavior Analyst (Ontario) and BCBA.</p>
+        <p>We offer a <b>free one-hour consultation</b> by Google Meet or phone to learn about your child's needs and how we can help. What days and times generally work for you? Just reply to this email.</p>
+        <p>Warm regards,<br/>Soheil<br/>Kind Steps \u00b7 info@kindsteps.ca \u00b7 +1 647-673-4401</p>
+      </div>`;
+      await transporter.sendMail({
+        from: MAIL_FROM,
+        to: email,
+        replyTo: MAIL_TO,
+        subject: autoSubject,
+        html: autoHtml,
+      });
+    } catch (autoErr) {
+      console.error("Auto-reply send error:", autoErr);
+    }
+
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error("SMTP send error:", err);
