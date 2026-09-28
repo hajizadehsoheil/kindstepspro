@@ -941,13 +941,32 @@
 <style>
   #ks-chat-btn {
     position: fixed; bottom: 1.4rem; right: 1.4rem; z-index: 10000;
-    width: 60px; height: 60px; border-radius: 50%; border: none; cursor: pointer;
-    background: var(--gradient-primary); color: #fff; font-size: 1.5rem;
-    box-shadow: 0 8px 24px rgba(99,102,241,.45);
+    width: 84px; height: 84px; border-radius: 50%; border: none; cursor: pointer;
+    background: var(--gradient-primary); color: #fff; font-size: 2rem;
+    box-shadow: 0 10px 30px rgba(99,102,241,.55);
     display: flex; align-items: center; justify-content: center;
     transition: transform .2s ease;
+    animation: ks-chat-pulse 2.4s ease-out infinite;
   }
-  #ks-chat-btn:hover { transform: scale(1.07); }
+  @keyframes ks-chat-pulse {
+    0% { box-shadow: 0 10px 30px rgba(99,102,241,.55), 0 0 0 0 rgba(99,102,241,.55); }
+    70% { box-shadow: 0 10px 30px rgba(99,102,241,.55), 0 0 0 20px rgba(99,102,241,0); }
+    100% { box-shadow: 0 10px 30px rgba(99,102,241,.55), 0 0 0 0 rgba(99,102,241,0); }
+  }
+  #ks-chat-btn:hover { transform: scale(1.08); animation: none; }
+  #ks-chat-label {
+    position: fixed; bottom: 2.7rem; right: 7.4rem; z-index: 10000;
+    background: #fff; color: #1e293b; border: 1px solid #e2e8f0;
+    border-radius: 999px; padding: .6rem 1.05rem;
+    font-size: .88rem; font-weight: 600; white-space: nowrap;
+    box-shadow: 0 10px 26px rgba(15,23,42,.18);
+    cursor: pointer; animation: ks-chat-nudge 2.4s ease-in-out infinite;
+  }
+  @keyframes ks-chat-nudge {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-6px); }
+  }
+  #ks-chat-label:hover { border-color: var(--primary-color); }
   #ks-chat-panel {
     position: fixed; bottom: 6.4rem; right: 1.4rem; z-index: 10000;
     width: 380px; max-width: calc(100vw - 2.8rem); height: 520px; max-height: calc(100vh - 9rem);
@@ -1000,11 +1019,13 @@
   #ks-chat-send:disabled { opacity: .5; cursor: default; }
   @media (max-width: 480px) {
     #ks-chat-panel { bottom: 5.9rem; right: .9rem; left: .9rem; width: auto; }
-    #ks-chat-btn { bottom: 1rem; right: 1rem; }
+    #ks-chat-btn { bottom: 1rem; right: 1rem; width: 72px; height: 72px; font-size: 1.7rem; }
+    #ks-chat-label { display: none; }
   }
 </style>
 
 <button id="ks-chat-btn" aria-label="Open chat"><i class="fa-solid fa-comment-dots"></i></button>
+<div id="ks-chat-label" role="button" tabindex="0">💬 Questions? Chat with us!</div>
 <div id="ks-chat-panel" role="dialog" aria-label="Kind Steps chat">
   <div class="ks-chat-head">
     <div class="ks-chat-avatar">🧩</div>
@@ -1053,6 +1074,7 @@
   var chipsBox = document.getElementById("ks-chat-chips");
   var input = document.getElementById("ks-chat-input");
   var sendBtn = document.getElementById("ks-chat-send");
+  var label = document.getElementById("ks-chat-label");
   var history = [];
   var greeted = false;
 
@@ -1060,7 +1082,14 @@
     panel.setAttribute("dir", "rtl");
     btn.style.right = 'auto';
     btn.style.left = '1.4rem';
+    label.style.right = 'auto';
+    label.style.left = '7.4rem';
+    label.textContent = "💬 سؤالی دارید؟ با ما گفتگو کنید!";
   }
+  label.addEventListener("click", function () { toggle(true); });
+  label.addEventListener("keydown", function (e) {
+    if (e.key === "Enter" || e.key === " ") { e.preventDefault(); toggle(true); }
+  });
   document.getElementById("ks-chat-title").textContent = T.title;
   document.getElementById("ks-chat-sub").textContent = T.sub;
   input.placeholder = T.placeholder;
@@ -1089,6 +1118,7 @@
   function toggle(open) {
     var willOpen = typeof open === "boolean" ? open : !panel.classList.contains("open");
     panel.classList.toggle("open", willOpen);
+    if (willOpen && label) label.style.display = "none";
     if (willOpen && !greeted) {
       greeted = true;
       addMsg(T.greeting, "bot");
