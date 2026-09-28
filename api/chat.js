@@ -6,8 +6,14 @@
 //   CHAT_API_KEY       required — API key (OpenAI, or free Gemini key from AI Studio)
 //   CHAT_API_BASE_URL  optional — default https://api.openai.com/v1
 //                      for free Gemini: https://generativelanguage.googleapis.com/v1beta/openai
-//   CHAT_MODEL         optional — default gpt-4o-mini
-//                      for free Gemini: gemini-2.5-flash
+//   CHAT_MODEL         optional — default gemini-3.6-flash (free Gemini tier)
+//                      for OpenAI: gpt-4o-mini
+//
+// NOTE: Google retires Gemini model names aggressively. If the configured model
+// 404s, the function automatically retries with a known-good fallback model.
+
+const DEFAULT_MODEL = "gemini-3.6-flash";
+const FALLBACK_MODELS = ["gemini-3.6-flash", "gemini-3.5-flash"];
 
 const SYSTEM_PROMPT = `You are the virtual assistant for Kind Steps ABA (kindsteps.ca), a provider of Applied Behaviour Analysis (ABA) services in the Greater Toronto Area, Canada.
 
@@ -43,6 +49,22 @@ async function readJsonBody(req) {
   }
 }
 
+async function callUpstream(baseUrl, apiKey, model, messages) {
+  return fetch(`${baseUrl}/chat/completions`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
+      max_tokens: 400,
+      temperature: 0.4,
+    }),
+  });
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -55,7 +77,7 @@ export default async function handler(req, res) {
     return res.status(503).json({ error: "unconfigured" });
   }
   const baseUrl = (process.env.CHAT_API_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
-  const model = process.env.CHAT_MODEL || "gpt-4o-mini";
+  const configuredModel = process.env.CHAT_MODEL || DEFAULT_MODEL;
 
   try {
     const { messages } = await readJsonBody(req);
@@ -75,19 +97,17 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid messages." });
     }
 
-    const resp = await fetch(`${baseUrl}/chat/completions`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${apiKey}`,
-      },
-      body: JSON.stringify({
-        model,
-        messages: [{ role: "system", content: SYSTEM_PROMPT }, ...clean],
-        max_tokens: 400,
-        temperature: 0.4,
-      }),
-    });
+    // Try the configured model first, then fall back if Google retired it (404).
+    const tried = [];
+    let resp = null;
+    for (const model of [configuredModel, ...FALLBACK_MODELS]) {
+      if (tried.includes(model)) continue;
+      tried.push(model);
+      resp = await callUpstream(baseUrl, apiKey, model, clean);
+      if (resp.ok) break;
+      if (resp.status !== 404) break; // only model-not-found is worth retrying
+      console.error(`Chat model ${model} not found (404); trying fallback...`);
+    }
 
     if (!resp.ok) {
       console.error("Chat upstream error:", resp.status);
