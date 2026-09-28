@@ -1,6 +1,13 @@
 // api/chat.js
 // Vercel serverless function — Kind Steps AI chat assistant.
-// Proxies chat requests to OpenAI. Requires OPENAI_API_KEY env var.
+// Proxies chat requests to an OpenAI-compatible API (OpenAI or Google Gemini).
+//
+// Env vars (Vercel → Settings → Environment Variables):
+//   CHAT_API_KEY       required — API key (OpenAI, or free Gemini key from AI Studio)
+//   CHAT_API_BASE_URL  optional — default https://api.openai.com/v1
+//                      for free Gemini: https://generativelanguage.googleapis.com/v1beta/openai
+//   CHAT_MODEL         optional — default gpt-4o-mini
+//                      for free Gemini: gemini-2.5-flash
 
 const SYSTEM_PROMPT = `You are the virtual assistant for Kind Steps ABA (kindsteps.ca), a provider of Applied Behaviour Analysis (ABA) services in the Greater Toronto Area, Canada.
 
@@ -42,10 +49,13 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: "Method Not Allowed" });
   }
 
-  const apiKey = process.env.OPENAI_API_KEY;
+  // Back-compat: also accept the earlier OPENAI_API_KEY name.
+  const apiKey = process.env.CHAT_API_KEY || process.env.OPENAI_API_KEY;
   if (!apiKey) {
     return res.status(503).json({ error: "unconfigured" });
   }
+  const baseUrl = (process.env.CHAT_API_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
+  const model = process.env.CHAT_MODEL || "gpt-4o-mini";
 
   try {
     const { messages } = await readJsonBody(req);
@@ -65,14 +75,14 @@ export default async function handler(req, res) {
       return res.status(400).json({ error: "Invalid messages." });
     }
 
-    const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+    const resp = await fetch(`${baseUrl}/chat/completions`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: "gpt-4o-mini",
+        model,
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...clean],
         max_tokens: 400,
         temperature: 0.4,
@@ -80,7 +90,7 @@ export default async function handler(req, res) {
     });
 
     if (!resp.ok) {
-      console.error("OpenAI error:", resp.status);
+      console.error("Chat upstream error:", resp.status);
       return res.status(502).json({ error: "upstream" });
     }
     const data = await resp.json();
